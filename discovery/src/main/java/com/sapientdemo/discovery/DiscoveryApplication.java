@@ -1,13 +1,13 @@
-package com.sapientdemo.discovery_server;
+package com.sapientdemo.discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DiscoveryServerApplication {
+public class DiscoveryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DiscoveryServerApplication.class, args);
+		SpringApplication.run(DiscoveryApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.sapientdemo.discovery_server;
+package com.sapientdemo.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DiscoveryServerApplicationTests {
+class DiscoveryApplicationTests {
 
 	@Test
 	void contextLoads() {
