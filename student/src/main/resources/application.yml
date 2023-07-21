@@ -13,13 +13,11 @@ spring:
     import: optional:configserver:http://localhost:8888
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/students
-    username: username
-    password: password
+    url: jdbc:postgresql://localhost:5431/db_microservices
+    username: db_user_demo
+    password: dlpY&2z%0wm#uG%s
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-

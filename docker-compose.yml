@@ -1,0 +1,25 @@
+services:
+  db-postgresql-microservices:
+    container_name: db-postgresql-microservices
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: db_microservices
+      POSTGRES_USER: db_user_demo
+      POSTGRES_PASSWORD: dlpY&2z%0wm#uG%s
+    volumes:
+      - db-postgresql-microservices:/data/postgres
+    ports:
+      - "5431:5431"
+    networks:
+      - postgres
+    expose:
+      - 5431
+    command: -p 5431
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  db-postgresql-microservices:
