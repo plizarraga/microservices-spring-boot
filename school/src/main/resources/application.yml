@@ -21,3 +21,6 @@ spring:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+application:
+  config:
+    students-url: http://localhost:8090/api/v1/students
