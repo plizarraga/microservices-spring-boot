@@ -1,0 +1,13 @@
+type Query {
+  # Schools
+  findAllSchools: [School]
+  findSchoolById(schoolId: String): School
+}
+
+type School {
+  id: ID
+  name: String
+  email: String
+  address: String
+  description: String
+}

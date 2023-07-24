@@ -2,6 +2,8 @@ package com.sapientdemo.school.controllers;
 
 import java.util.List;
 
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,5 +64,17 @@ public class SchoolController {
     public ResponseEntity<SchoolWithStudentsResponse> findAllSchools(
             @PathVariable("school-id") Integer schoolId) {
         return ResponseEntity.ok(schoolService.findSchoolsWithStudents(schoolId));
+    }
+
+    @QueryMapping(name = "findSchoolById")
+    public School findById(@Argument(name = "schoolId") String id) {
+        Integer schoolId = Integer.parseInt(id);
+
+        return schoolService.getSchoolById(schoolId);
+    }
+
+    @QueryMapping(name = "findAllSchools")
+    public List<School> findAll() {
+        return schoolService.findAllSchools();
     }
 }
