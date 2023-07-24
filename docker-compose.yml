@@ -1,4 +1,62 @@
+version: '3.9'
 services:
+  # config-server:
+  #   container_name: config-server
+  #   build:
+  #     context: ./config-server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8888:8888
+  # discovery:
+  #   container_name: discovery
+  #   build:
+  #     context: ./discovery
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8761:8761
+  #   depends_on:
+  #     - config-server
+  # gateway:
+  #   container_name: gateway
+  #   build:
+  #     context: ./gateway
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8222:8222
+  #   depends_on:
+  #     - config-server
+  # schools:
+  #   container_name: schools
+  #   build:
+  #     context: ./school
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8070:8070
+  #   environment:
+  #     - DATABASE_URL=jdbc:postgresql://db-microservices:5431/db_microservices
+  #     - DATABASE_USERNAME=db_user_demo
+  #     - DATABASE_PASSWORD=dlpY&2z%0wm#uG%s
+  #   depends_on:
+  #     - config-server
+  #     - discovery
+  #     - gateway
+  #     # - db-postgresql-microservices
+  # students:
+  #   container_name: students
+  #   build:
+  #     context: ./student
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8090:8090
+  #   environment:
+  #     - DATABASE_URL=jdbc:postgresql://db-microservices:5431/db_microservices
+  #     - DATABASE_USERNAME=db_user_demo
+  #     - DATABASE_PASSWORD=dlpY&2z%0wm#uG%s
+  #   depends_on:
+  #     - config-server
+  #     - discovery
+  #     - gateway
+  #     # - db-postgresql-microservices
   db-postgresql-microservices:
     container_name: db-postgresql-microservices
     image: postgres:15.3
@@ -11,15 +69,8 @@ services:
       - db-postgresql-microservices:/data/postgres
     ports:
       - "5431:5431"
-    networks:
-      - postgres
     expose:
       - 5431
     command: -p 5431
-
-networks:
-  postgres:
-    driver: bridge
-
 volumes:
   db-postgresql-microservices:
