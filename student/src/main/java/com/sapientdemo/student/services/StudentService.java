@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.sapientdemo.student.models.entities.Student;
 import com.sapientdemo.student.repositories.StudentRepository;
+import com.sapientdemo.student.utils.DeleteResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,17 +31,17 @@ public class StudentService {
         return student;
     }
 
-    public boolean deleteStudent(Integer studentId) {
+    public DeleteResponse deleteStudent(Integer studentId) {
         Student student = studentRepository.findById(studentId)
                 .orElse(null);
 
-        if (student != null) {
-            studentRepository.delete(student);
-            log.info("Student deleted: {}", student);
-            return true;
+        if (student == null) {
+            return new DeleteResponse(false, "Student not found");
         }
 
-        return false;
+        studentRepository.delete(student);
+        log.info("Student deleted: {}", student);
+        return new DeleteResponse(true, "Student deleted successfully");
     }
 
     public List<Student> findAllStudentsBySchool(Integer schoolId) {

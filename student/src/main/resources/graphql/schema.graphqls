@@ -1,6 +1,11 @@
 type Query {
-  findAllStudents: [Student],
+  findAllStudents: [Student]
   findStudentById(studentId: String): Student
+}
+
+type Mutation {
+  createStudent(inputStudent: InputStudent!): Student
+  deleteStudent(studentId: String): String
 }
 
 type Student {
@@ -8,5 +13,12 @@ type Student {
   firstName: String
   lastName: String
   email: String
+  schoolId: String
+}
+
+input InputStudent {
+  firstName: String!
+  lastName: String!
+  email: String!
   schoolId: String
 }

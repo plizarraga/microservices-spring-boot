@@ -104,7 +104,7 @@ public class SchoolController {
         return school;
     }
 
-    // Delete school
+    // Delete school by id
     @MutationMapping
     public String deleteSchool(@Argument(name = "schoolId") String id) {
         Integer schoolId = Integer.parseInt(id);
