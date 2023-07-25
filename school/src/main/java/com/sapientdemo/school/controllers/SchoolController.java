@@ -20,6 +20,7 @@ import com.sapientdemo.school.graphql.InputSchool;
 import com.sapientdemo.school.models.entities.School;
 import com.sapientdemo.school.models.entities.dtos.SchoolWithStudentsResponse;
 import com.sapientdemo.school.services.SchoolService;
+import com.sapientdemo.school.utils.DeleteResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -58,12 +59,12 @@ public class SchoolController {
 
     // Delete school by id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSchool(@PathVariable Integer id) {
-        boolean isDeleted = schoolService.deleteSchool(id);
-        if (isDeleted) {
+    public ResponseEntity<String> deleteSchool(@PathVariable Integer id) {
+        DeleteResponse response = schoolService.deleteSchool(id);
+        if (response.isSuccess()) {
             return ResponseEntity.ok().build();
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.unprocessableEntity().body(response.getMessage());
         }
     }
 
@@ -107,11 +108,6 @@ public class SchoolController {
     @MutationMapping
     public String deleteSchool(@Argument(name = "schoolId") String id) {
         Integer schoolId = Integer.parseInt(id);
-
-        if (schoolService.deleteSchool(schoolId)) {
-            return "School deleted";
-        } else {
-            return "There was an error deleting the school";
-        }
+        return schoolService.deleteSchool(schoolId).getMessage();
     }
 }

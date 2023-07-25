@@ -8,6 +8,7 @@ import com.sapientdemo.school.client.StudentClient;
 import com.sapientdemo.school.models.entities.School;
 import com.sapientdemo.school.models.entities.dtos.SchoolWithStudentsResponse;
 import com.sapientdemo.school.repositories.SchoolRepository;
+import com.sapientdemo.school.utils.DeleteResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,25 +35,25 @@ public class SchoolService {
         return school;
     }
 
-    public boolean deleteSchool(Integer schoolId) {
+    public DeleteResponse deleteSchool(Integer schoolId) {
         School school = schoolRepository.findById(schoolId)
                 .orElse(null);
 
         if (school == null) {
-            return false;
+            return new DeleteResponse(false, "School not found");
         }
 
         // Check if the school has any associated students
         var students = studentClient.findAllStudentsBySchool(schoolId);
         if (!students.isEmpty()) {
-            return false;
+            return new DeleteResponse(false, "Cannot delete school with associated students");
         }
 
         // Delete the school if no associated students
         schoolRepository.delete(school);
         log.info("School deleted: {}", school);
 
-        return true;
+        return new DeleteResponse(true, "School deleted successfully");
     }
 
     public SchoolWithStudentsResponse findSchoolsWithStudents(Integer schoolId) {
