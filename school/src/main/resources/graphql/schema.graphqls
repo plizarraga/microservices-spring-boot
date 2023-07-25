@@ -1,10 +1,11 @@
 type Query {
-  findAllSchools: [School],
+  findAllSchools: [School]
   findSchoolById(schoolId: String): School
 }
 
 type Mutation {
   createSchool(inputSchool: InputSchool!): School
+  deleteSchool(schoolId: String): String
 }
 
 type School {

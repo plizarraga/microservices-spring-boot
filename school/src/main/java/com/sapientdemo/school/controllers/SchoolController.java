@@ -102,4 +102,16 @@ public class SchoolController {
 
         return school;
     }
+
+    // Delete school
+    @MutationMapping
+    public String deleteSchool(@Argument(name = "schoolId") String id) {
+        Integer schoolId = Integer.parseInt(id);
+
+        if (schoolService.deleteSchool(schoolId)) {
+            return "School deleted";
+        } else {
+            return "There was an error deleting the school";
+        }
+    }
 }
