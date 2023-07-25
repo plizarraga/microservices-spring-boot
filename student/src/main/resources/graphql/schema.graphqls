@@ -1,6 +1,5 @@
 type Query {
-  # Schools
-  findAllStudents: [Student]
+  findAllStudents: [Student],
   findStudentById(studentId: String): Student
 }
 

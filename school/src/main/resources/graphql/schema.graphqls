@@ -1,6 +1,5 @@
 type Query {
-  # Schools
-  findAllSchools: [School]
+  findAllSchools: [School],
   findSchoolById(schoolId: String): School
 }
 
