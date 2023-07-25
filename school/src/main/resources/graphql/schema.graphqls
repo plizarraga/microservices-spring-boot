@@ -3,8 +3,19 @@ type Query {
   findSchoolById(schoolId: String): School
 }
 
+type Mutation {
+  createSchool(inputSchool: InputSchool!): School
+}
+
 type School {
   id: ID
+  name: String
+  email: String
+  address: String
+  description: String
+}
+
+input InputSchool {
   name: String
   email: String
   address: String

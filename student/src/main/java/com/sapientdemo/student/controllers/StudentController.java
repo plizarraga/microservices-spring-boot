@@ -40,7 +40,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getProductById(@PathVariable Integer id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable Integer id) {
         Student student = studentService.getStudentById(id);
         if (student != null) {
             return ResponseEntity.ok(student);
@@ -50,7 +50,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable Integer id) {
         boolean isDeleted = studentService.deleteStudent(id);
         if (isDeleted) {
             return ResponseEntity.ok().build();
